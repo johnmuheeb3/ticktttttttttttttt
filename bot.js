@@ -8,12 +8,12 @@ function clean(text) {
         return text;
 }
 
-const prefix = "-";
-const token = "NTI2NDAxMzQ2MTYxNzM3NzU5.DwEpFw.narsWvvA881pRPdajKSXseHf48s";
+const prefix = "%";
+const token = "NTQyMjkxMTUxMjI3NDUzNDUw.Dzr4EA.6Qsn9mY-zStxpnfQsDSXbbCm1HI";
 
 client.on("ready", () => {
   console.log("FRASGAMER  | Logged in! Server count: ${client.guilds.size}");
-  client.user.setGame(` -help | ${prefix}new`);
+  client.user.setGame(` %help | ${prefix}new`);
 });
 
 
@@ -24,7 +24,7 @@ client.on("message", (message) => {
     const embed = new Discord.RichEmbed()
     .setTitle(`:mailbox_with_mail: FRASGAMER Help`)
     .setColor(0xCF40FA)
-    .setDescription(`مرحبا! أنا FRASGAMER ، و Discord commands=بوت لأشياء تذكرة دعم أكثر من رائع وأكثر! وهنا أوامر بلدي:`)
+    .setDescription(`مرحبا! أنا Rain Tickety ، و Discord commands=بوت لأشياء تذكرة دعم أكثر من رائع وأكثر! وهنا أوامر بلدي:`)
     .addField(`Tickets`, `[${prefix}new]() > Opens up a new ticket and tags the Support Team\n[${prefix}close]() > Closes a ticket that has been resolved or been opened by accident`)
     .addField(`Other`, `[${prefix}help]() > Shows you this help menu your reading\n[${prefix}ping]() > Pings the bot to see how long it takes to react\n[${prefix}about]() > Tells you all about FRAS#9999`)
     message.channel.send({ embed: embed });
@@ -39,7 +39,7 @@ client.on("message", (message) => {
 if (message.content.toLowerCase().startsWith(prefix + `new`)) {
     const reason = message.content.split(" ").slice(1).join(" ");
     if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`This server doesn't have a \`Support Team\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
-    if (message.guild.channels.exists("name", "ticket-" + message.author.id)) return message.channel.send(`You already have a ticket open.`);
+    if (message.guild.channels.exists("name", "ticket-" + message.author.username)) return message.channel.send(`You already have a ticket open.`);
     message.guild.createChannel(`ticket-${message.author.id}`, "text").then(c => {
         let role = message.guild.roles.find("name", "Support Team");
         let role2 = message.guild.roles.find("name", "@everyone");
@@ -66,9 +66,9 @@ if (message.content.toLowerCase().startsWith(prefix + `new`)) {
 if (message.content.toLowerCase().startsWith(prefix + `close`)) {
     if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`لا يمكنك استخدام أمر الإغلاق خارج قناة التذاكر.`);
 
-    message.channel.send(`هل أنت واثق؟ بمجرد التأكيد ، لا يمكنك عكس هذا الإجراء!\للتأكيد ، اكتب \`-تاكيد\`. سوف يتم الغاء امر بعد 10 ثواني ان لم تقم بكتابة تاكيد.`)
+    message.channel.send(`هل أنت واثق؟ بمجرد التأكيد ، لا يمكنك عكس هذا الإجراء!\للتأكيد ، اكتب \`%تاكيد\`. سوف يتم الغاء امر بعد 10 ثواني ان لم تقم بكتابة تاكيد.`)
     .then((m) => {
-      message.channel.awaitMessages(response => response.content === '-تاكيد', {
+      message.channel.awaitMessages(response => response.content === '%تاكيد', {
         max: 1,
         time: 10000,
         errors: ['time'],
